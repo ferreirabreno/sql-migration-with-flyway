@@ -1,4 +1,4 @@
-package dev.breno.sqlmigrationwithflyway.message;
+package dev.breno.sqlmigrationwithflyway.person;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
