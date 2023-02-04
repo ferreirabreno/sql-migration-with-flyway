@@ -61,4 +61,4 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 - [x] Create docker-compose.yml with Postgresql service
 - [x] Create Schema for db
 - [x] Create model in application
-- [ ] Update model in application with Flyway Migration
+- [x] Update model in application with Flyway Migration
