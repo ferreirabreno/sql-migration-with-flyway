@@ -56,6 +56,6 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 
 - [x] Include Postgresql dependency
 - [x] Include Flyway Migration dependency
-- [ ] Configure environment variables for Postgresql in application.properties
+- [x] Configure environment variables for Postgresql in application.properties
 - [x] Configure environment variables for Flyway Migration in application.properties
-- [ ] Create docker-compose.yml with Postgresql service
+- [x] Create docker-compose.yml with Postgresql service
