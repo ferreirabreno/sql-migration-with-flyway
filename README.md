@@ -4,7 +4,7 @@
 
 Flyway is an open-source database migration tool that helps manage changes to a database schema. It allows for version control of database schemas and makes it easy to migrate between versions. The tool supports SQL-based migrations and can be integrated into various build and deployment processes. The goal of Flyway is to make it easy to keep track of changes to the database schema and to ensure that all instances of the database have the same schema.
 
-## Step-by-step
+## Configuring Flyway Migration step-by-step
 
 1. Add the Flyway Gradle plugin to your build.gradle file:
 ```groovy
@@ -35,9 +35,26 @@ V1.0.1__Adds_new_attribute_date.sql
 ./gradlew flywayMigrate
 ```
 
+## Configuring Postgresql step-by-step
+
+1. Add the PostgreSQL JDBC driver to your project's dependencies in build.gradle file:
+```groovy
+dependencies {
+  implementation 'org.postgresql:postgresql:42.2.17'
+}
+```
+
+2. Configure the connection properties for your database in a properties file, for example, `src/main/resources/application.properties`:
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/sql_migration_poc
+spring.datasource.username=postgresql
+spring.datasource.password=postgresql
+spring.datasource.driver-class-name=org.postgresql.Driver
+```
+
 # TO DO
 
-- [ ] Include Postgresql dependency
+- [x] Include Postgresql dependency
 - [x] Include Flyway Migration dependency
 - [ ] Configure environment variables for Postgresql in application.properties
 - [x] Configure environment variables for Flyway Migration in application.properties
