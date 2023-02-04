@@ -26,10 +26,17 @@ public class MessageController {
     }
 
     @GetMapping("/message/{id}")
-    public ResponseEntity<?> readMessage(@PathVariable UUID id) {
+    public ResponseEntity<?> getMessage(@PathVariable UUID id) {
         Message message = messageRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         MessageResponse messageResponse = MessageResponse.from(message);
         return ResponseEntity.ok(messageResponse);
+    }
+
+    @PutMapping("/message/{id}/read")
+    public ResponseEntity<?> readMessage(@PathVariable UUID id) {
+        Message message = messageRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        messageRepository.save(message.readMessage());
+        return ResponseEntity.noContent().build();
     }
 
 }

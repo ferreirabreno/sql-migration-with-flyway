@@ -17,6 +17,7 @@ public class Message {
     @ManyToOne(cascade = CascadeType.ALL) private final Person receiver;
     @ManyToOne(cascade = CascadeType.ALL) private final Person sender;
     private final LocalDateTime sendDate = LocalDateTime.now();
+    private LocalDateTime readDate;
 
     @Deprecated
     private Message() {
@@ -49,6 +50,15 @@ public class Message {
 
     public LocalDateTime getSendDate() {
         return sendDate;
+    }
+
+    public LocalDateTime getReadDate() {
+        return readDate;
+    }
+
+    public Message readMessage() {
+        this.readDate = LocalDateTime.now();
+        return this;
     }
 
 }
