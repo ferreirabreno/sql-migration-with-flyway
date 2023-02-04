@@ -5,7 +5,7 @@ import dev.breno.sqlmigrationwithflyway.person.PersonRepository;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
 
@@ -16,8 +16,8 @@ public record MessageRequest(
 ) {
 
     public Message toModel(PersonRepository personRepository) {
-        Person receiver = personRepository.findById(receiverId).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
-        Person sender = personRepository.findById(senderId).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        Person receiver = personRepository.findById(receiverId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Person sender = personRepository.findById(senderId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return new Message(message, receiver, sender);
     }
 

@@ -12,4 +12,5 @@ public record MessageResponse(String senderName, String receiverName, String mes
                 message.getSendDate()
         );
     }
+
 }
