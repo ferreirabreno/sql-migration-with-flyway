@@ -12,6 +12,12 @@ public class Person {
     private final String name;
     private final String cpf;
 
+    @Deprecated
+    private Person() {
+        this.cpf = "";
+        this.name = "";
+    }
+
     public Person(String name, String cpf) {
         this.name = name;
         this.cpf = cpf;

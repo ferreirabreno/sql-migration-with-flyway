@@ -18,6 +18,13 @@ public class Message {
     @ManyToOne(cascade = CascadeType.ALL) private final Person sender;
     private final LocalDateTime sendDate = LocalDateTime.now();
 
+    @Deprecated
+    private Message() {
+        this.message = "";
+        this.receiver = null;
+        this.sender = null;
+    }
+
     public Message(String message, Person receiver, Person sender) {
         this.message = message;
         this.receiver = receiver;

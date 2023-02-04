@@ -3,14 +3,15 @@ package dev.breno.sqlmigrationwithflyway.message;
 import dev.breno.sqlmigrationwithflyway.person.Person;
 import dev.breno.sqlmigrationwithflyway.person.PersonRepository;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.UUID;
 
 public record MessageRequest(
-        @NotBlank UUID senderId,
-        @NotBlank UUID receiverId,
+        @NotNull UUID senderId,
+        @NotNull UUID receiverId,
         @NotBlank String message
 ) {
 
