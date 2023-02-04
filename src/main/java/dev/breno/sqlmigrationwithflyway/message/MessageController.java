@@ -1,6 +1,7 @@
 package dev.breno.sqlmigrationwithflyway.message;
 
 import dev.breno.sqlmigrationwithflyway.person.PersonRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class MessageController {
     @Autowired PersonRepository personRepository;
 
     @PostMapping("/message")
-    public ResponseEntity<?> sendMessage(@RequestBody MessageRequest request) {
+    public ResponseEntity<?> sendMessage(@RequestBody @Valid MessageRequest request) {
         Message message = request.toModel(personRepository);
         messageRepository.save(message);
         URI location = URI.create("/message/" + message.getId().toString());

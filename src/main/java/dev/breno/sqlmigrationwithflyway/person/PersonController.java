@@ -1,5 +1,6 @@
 package dev.breno.sqlmigrationwithflyway.person;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,7 @@ public class PersonController {
     @Autowired PersonRepository personRepository;
 
     @PostMapping("/person")
-    public ResponseEntity<?> createPerson(@RequestBody PersonRequest request) {
+    public ResponseEntity<?> createPerson(@RequestBody @Valid PersonRequest request) {
         Person person = personRepository.save(request.toModel());
         URI location = URI.create("/person/" + person.getId().toString());
         return ResponseEntity.created(location).build();
