@@ -6,50 +6,35 @@ Flyway is an open-source database migration tool that helps manage changes to a 
 
 ## Configuring Flyway Migration step-by-step
 
-1. Add the Flyway Gradle plugin to your build.gradle file:
+
+1. Add the Flyway and Spring Data JPA dependencies to your build.gradle file:
 ```groovy
-plugins {
-  id 'org.flywaydb.flyway' version '9.8.1'
+dependencies {
+    implementation 'org.postgresql:postgresql:42.2.17'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 ```
 
-2. Configure the Flyway Gradle plugin by adding the following to your build.gradle file:
-```groovy
-flyway {
-    url = 'jdbc:postgresql://localhost:5432/sql_migration_poc'
-    user = 'postgresql'
-    password = 'postgresql'
-}
-```
-
-3. Create a SQL script file for each change you want to make to your database. Each file should be named in the format `V{version}__{description}.sql`. The version number should be incremented with each new change and the description should be a brief summary of the change.
+2. Create a SQL script file for each change you want to make to your database. Each file should be named in the format `V{version}__{description}.sql`. The version number should be incremented with each new change and the description should be a brief summary of the change.
 ```text
 V1.0.0__Schema.sql
 V1.0.1__Adds_new_attribute_date.sql
 ```
 
-4. Place the SQL script files in the `src/main/resources/db/migration` directory.
+3. Place the SQL script files in the `src/main/resources/db/migration` directory.
 
-5. Run the flywayMigrate task to apply the migrations to the database:
-```shell
-./gradlew flywayMigrate
-```
-
-## Configuring Postgresql step-by-step
-
-1. Add the PostgreSQL JDBC driver to your project's dependencies in build.gradle file:
-```groovy
-dependencies {
-  implementation 'org.postgresql:postgresql:42.2.17'
-}
-```
-
-2. Configure the connection properties for your database in a properties file, for example, `src/main/resources/application.properties`:
+4. Configure the connection properties for your database in a properties file, for example, `src/main/resources/application.properties`:
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/sql_migration_poc
 spring.datasource.username=postgresql
 spring.datasource.password=postgresql
 spring.datasource.driver-class-name=org.postgresql.Driver
+```
+
+5. Run the application to apply the migrations to the database:
+```shell
+./gradlew bootRun
 ```
 
 # TO DO
